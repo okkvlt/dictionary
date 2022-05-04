@@ -112,3 +112,19 @@ Exemplo:
 ```c
 delete_dict(dicionario);
 ```
+
+## ▪ Número de Chaves
+
+Para obter o número de chaves em um dicionário, basta executar a função `num_of_keys()`. Essa função é do tipo _int_ e retornára o número de chaves dentro do dicionário.
+
+Sintaxe:
+
+```python
+num_of_keys(No *no);
+```
+
+Exemplo: 
+
+```c
+int n = num_of_keys(dicionario);
+```
