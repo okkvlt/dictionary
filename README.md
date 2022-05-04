@@ -25,7 +25,7 @@ Também é possível printar o dicionário completo utilizando a função `show_
 Sintaxe:
 
 ```python
-show_dict(No *no);
+show_dict(No *dicionario);
 ```
 
 Exemplo: 
@@ -46,7 +46,7 @@ Tendo criado um dicionário, é possível inserir valores executando a função 
 Sintaxe:
 
 ```c
-insert_key(No *no, char *key, char *meaning);
+insert_key(No *dicionario, char *key, char *meaning);
 ```
 
 Exemplo: 
@@ -75,12 +75,12 @@ Retorno:
 
 ## ▪ Remoção de Valores
 
-Também é possível deletar valores do dicionário utilizando a função `delete_key()`. Essa função é do tipo _bool_ e retornará _true_ caso a inserção seja bem sucedida e _false_ caso a inserção falhe. O único erro possível na deleção de valores refere-se a quando o dicionário é vazio.
+Também é possível deletar valores do dicionário utilizando a função `delete_key()`. Essa função é do tipo _bool_ e retornará _true_ caso a inserção seja bem sucedida e _false_ caso a inserção falhe. Os únicos erros possíveis na deleção de valores referem-se a quando o dicionário é vazio ou quando a chave informada não existe (_NULL_).
 
 Sintaxe:
 
 ```c
-delete_key(No *no, char *key);
+delete_key(No *dicionario, char *key);
 ```
 
 Exemplo: 
@@ -104,7 +104,7 @@ Para remover um dicionário por completo, basta utilizar a função `delete_dict
 Sintaxe:
 
 ```python
-delete_dict(No *no);
+delete_dict(No *dicionario);
 ```
 
 Exemplo: 
@@ -120,7 +120,7 @@ Para obter o número de chaves em um dicionário, basta executar a função `num
 Sintaxe:
 
 ```python
-num_of_keys(No *no);
+num_of_keys(No *dicionario);
 ```
 
 Exemplo: 
@@ -136,7 +136,7 @@ Outra função existente é a de organizar alfabeticamente as chaves de um dicio
 Sintaxe:
 
 ```python
-sort_dict(No *no);
+sort_dict(No *dicionario);
 ```
 
 Exemplo: 
@@ -154,4 +154,35 @@ Retorno:
 ```python
 {'Espanha': 'País europeu.', 'Arroz': 'Comida típica.'}
 {'Arroz': 'Comida típica.', 'Espanha': 'País europeu.'}
+```
+
+## ▪ Pesquisa de Valores
+
+A biblioteca também contém a função de pesquisar o conteúdo de chaves no dicionário. Para chamar essa função, utilize `search_meaning_key()`. Caso a chave não seja encontrada, a função retornará _NULL_.
+
+Sintaxe:
+
+```c
+search_meaning_key(No *dicionario, char *key);
+```
+
+Exemplo: 
+
+```c
+show_dict(dicionario);
+
+char key[] = "Arroz";
+char *string = malloc(sizeof(char) * 64);
+
+string = search_meaning_key(dicionario, key);
+
+if (string != NULL)
+    printf("\nSignificado de '%s': '%s'\n", key, string);
+```
+
+Retorno: 
+
+```
+{'Arroz': 'Comida típica.', 'Espanha': 'País europeu.'}
+Significado de 'Arroz': 'Comida típica.'
 ```
