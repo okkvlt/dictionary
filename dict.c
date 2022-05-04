@@ -9,6 +9,7 @@
 
 struct dict
 {
+    int id;
     char key[MAX];
     char meaning[MAX];
     struct dict *prox;
@@ -82,13 +83,17 @@ bool insert_key(No *no, char *key, char *meaning)
         return false;
 
     if (no->head == NULL)
+    {
         no->head = novo;
+        novo->id = 0;
+    }
     else
     {
         Dict *aux = no->head;
         while (aux->prox != NULL)
             aux = aux->prox;
         aux->prox = novo;
+        novo->id = aux->id + 1;
     }
 
     no->qty++;
@@ -113,19 +118,53 @@ Dict *search_end_pre_key(No *no, char *key)
     return NULL;
 }
 
-char *search_meaning_key(No *no, char *key)
+char *search_meaning_byKey(No *no, char *key)
 {
-    if (search_end_pre_key(no, key) == NULL)
-        return NULL;
+    Dict *aux = search_end_pre_key(no, key);
 
-    Dict *aux = search_end_pre_key(no, key), *end;
+    if (aux != NULL)
+        return aux->prox->meaning;
+    return NULL;
+}
 
-    char *string = malloc(sizeof(char) * MAX);
-    end = aux->prox;
+int search_id_byKey(No *no, char *key)
+{
+    Dict *aux = search_end_pre_key(no, key);
 
-    strcpy(string, end->meaning);
+    if (aux != NULL)
+        return aux->prox->id;
+}
 
-    return string;
+Dict *search_byId(No *no, int id)
+{
+    Dict *aux = no->head;
+
+    while (aux != NULL)
+    {
+        if (aux->id == id)
+            return aux;
+        aux = aux->prox;
+    }
+
+    return NULL;
+}
+
+char *search_meaning_byId(No *no, int id)
+{
+    Dict *aux = search_byId(no, id);
+
+    if (aux != NULL)
+        return aux->meaning;
+    return NULL;
+}
+
+char *search_key_byId(No *no, int id)
+{
+    Dict *aux = search_byId(no, id);
+
+    if (aux != NULL)
+        return aux->key;
+    return NULL;
 }
 
 bool delete_key(No *no, char *key)
@@ -175,7 +214,7 @@ void show_dict(No *no)
     while (aux != NULL)
     {
         if (aux->prox != NULL)
-            printf("\'%s\': \'%s\', ", aux->key, aux->meaning);
+            printf("\'%s\': \'%s\', ", aux->key, aux->meaning, aux->id);
         else
             printf("\'%s\': \'%s\'", aux->key, aux->meaning);
         aux = aux->prox;

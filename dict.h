@@ -60,12 +60,39 @@ int num_of_keys(No *);
 void sort_dict(No *);
 
 /**
- * Pesquisa o significado de uma determinada chave.
+ * Pesquisa o conteúdo referente a uma determinada chave.
  * @param No* Endereço do nó descritor.
  * @param char* String com a chave.
  * @retval NULL — Chave não encontrada.
- * @retval char* — Significado da chave.
+ * @retval char* — Conteúdo da chave.
  */
-char *search_meaning_key(No *, char *);
+char *search_meaning_byKey(No *, char *);
+
+/**
+ * Pesquisa o conteúdo referente a um determinado id.
+ * @param No* Endereço do nó descritor.
+ * @param id Inteiro com o id.
+ * @retval NULL — Id não encontrado.
+ * @retval char* — Conteúdo do id.
+ */
+char *search_meaning_byId(No *, int id);
+
+/**
+ * Pesquisa a chave referente a um determinado id.
+ * @param No* Endereço do nó descritor.
+ * @param id Inteiro com o id.
+ * @retval NULL — Id não encontrado.
+ * @retval char* — Chave do id.
+ */
+char *search_key_byId(No *no, int id);
+
+/**
+ * Pesquisa o id referente a uma determinada chave.
+ * @param No* Endereço do nó descritor.
+ * @param char* String com a chave.
+ * @retval void — Chave não encontrada.
+ * @retval char* — Id da chave.
+ */
+int search_id_byKey(No *no, char *);
 
 #endif
