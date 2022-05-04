@@ -24,8 +24,8 @@ Também é possível printar o dicionário completo utilizando a função `show_
 
 Sintaxe:
 
-```python
-show_dict(No *dicionario);
+```c
+void show_dict(No *dicionario);
 ```
 
 Exemplo: 
@@ -46,7 +46,7 @@ Tendo criado um dicionário, é possível inserir valores executando a função 
 Sintaxe:
 
 ```c
-insert_key(No *dicionario, char *key, char *meaning);
+bool insert_key(No *dicionario, char *key, char *meaning);
 ```
 
 Exemplo: 
@@ -80,7 +80,7 @@ Também é possível deletar valores do dicionário utilizando a função `delet
 Sintaxe:
 
 ```c
-delete_key(No *dicionario, char *key);
+bool delete_key(No *dicionario, char *key);
 ```
 
 Exemplo: 
@@ -103,8 +103,8 @@ Para remover um dicionário por completo, basta utilizar a função `delete_dict
 
 Sintaxe:
 
-```python
-delete_dict(No *dicionario);
+```c
+void delete_dict(No *dicionario);
 ```
 
 Exemplo: 
@@ -119,8 +119,8 @@ Para obter o número de chaves em um dicionário, basta executar a função `num
 
 Sintaxe:
 
-```python
-num_of_keys(No *dicionario);
+```c
+int num_of_keys(No *dicionario);
 ```
 
 Exemplo: 
@@ -135,8 +135,8 @@ Outra função existente é a de organizar alfabeticamente as chaves de um dicio
 
 Sintaxe:
 
-```python
-sort_dict(No *dicionario);
+```c
+void sort_dict(No *dicionario);
 ```
 
 Exemplo: 
@@ -158,12 +158,15 @@ Retorno:
 
 ## ▪ Pesquisa de Valores
 
-A biblioteca também contém a função de pesquisar o conteúdo de chaves no dicionário. Para chamar essa função, utilize `search_meaning_key()`. Caso a chave não seja encontrada, a função retornará _NULL_.
+A biblioteca também contém diferentes funções de pesquisa de conteúdos e chaves no dicionário. Essas funções são `search_meaning_byKey()`, `search_id_byKey()`, `search_meaning_byId()` e `search_key_byId()`. Tais funções realizam, respectivamente, uma busca do conteúdo de determinada chave, uma busca do id de determinada chave, uma busca do conteúdo de determinado id e, por fim, uma busca da chave de um determinado id. As funções que retornam strings, ou seja, as que procuram por chaves e conteúdos, retornarão _NULL_ caso a busca não tenha sucesso. Por outro lado, a função que busca por id retornará _void_ caso a busca não tenha sucesso.
 
-Sintaxe:
+Sintaxes:
 
 ```c
-search_meaning_key(No *dicionario, char *key);
+char *search_meaning_byKey(No *dicionario, char *key);
+char *search_meaning_byId(No *dicionario, int id);
+char *search_key_byId(No *dicionario, int id);
+int search_id_byKey(No *dicionario, char *key);
 ```
 
 Exemplo: 
@@ -174,7 +177,7 @@ show_dict(dicionario);
 char key[] = "Arroz";
 char *string = malloc(sizeof(char) * 64);
 
-string = search_meaning_key(dicionario, key);
+string = search_meaning_byKey(dicionario, key);
 
 if (string != NULL)
     printf("\nSignificado de '%s': '%s'\n", key, string);
