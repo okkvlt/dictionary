@@ -66,7 +66,10 @@ No *create_dict()
 {
     No *novo = malloc(sizeof(No));
     if (novo != NULL)
+    {
         novo->head = NULL;
+        novo->qty = 0;
+    }
     return novo;
 }
 
