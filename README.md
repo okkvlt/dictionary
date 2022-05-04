@@ -52,13 +52,13 @@ insert_key(No *no, char *key, char *meaning);
 Exemplo: 
 
 ```c
-    char keys[3][64] = {"Arroz",
-                        "Árvore",
-                        "Espanha"};
+char keys[3][64] = {"Arroz",
+                    "Árvore",
+                    "Espanha"};
 
-    char meanings[3][64] = {"Comida típica.",
-                            "Ser vivo.",
-                            "País europeu."};
+char meanings[3][64] = {"Comida típica.",
+                        "Ser vivo.",
+                        "País europeu."};
 ```
 ```python
 for (int i = 0; i < 3; i++)
