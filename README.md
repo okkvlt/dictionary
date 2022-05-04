@@ -87,6 +87,8 @@ Exemplo:
 
 ```c
 delete_key(dicionario, keys[1]);
+
+show_dict(dicionario);
 ```
 
 Retorno:
