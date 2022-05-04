@@ -91,6 +91,38 @@ bool insert_key(No *no, char *key, char *meaning)
     return true;
 }
 
+Dict *search_end_pre_key(No *no, char *key)
+{
+    Dict *aux = no->head;
+
+    if (aux == NULL)
+        return NULL;
+
+    while (aux != NULL)
+    {
+        if (aux->prox != NULL && strcmp(aux->prox->key, key) == 0)
+            return aux;
+        aux = aux->prox;
+    }
+
+    return NULL;
+}
+
+char *search_meaning_key(No *no, char *key)
+{
+    if (search_end_pre_key(no, key) == NULL)
+        return NULL;
+
+    Dict *aux = search_end_pre_key(no, key), *end;
+
+    char *string = malloc(sizeof(char) * 64);
+    end = aux->prox;
+
+    strcpy(string, end->meaning);
+
+    return string;
+}
+
 bool delete_key(No *no, char *key)
 {
     if (no->head == NULL)
@@ -100,23 +132,22 @@ bool delete_key(No *no, char *key)
 
     if (strcmp(aux->key, key) == 0)
     {
-        end = aux;
         no->head = aux->prox;
+        end = aux;
     }
     else
     {
-        while (aux != NULL)
-        {
-            if (strcmp(aux->prox->key, key) == 0)
-                break;
-            aux = aux->prox;
-        }
+        aux = search_end_pre_key(no, key);
+        if (aux == NULL)
+            return false;
         end = aux->prox;
         aux->prox = aux->prox->prox;
     }
 
     free(end);
     no->qty--;
+
+    return true;
 }
 
 void delete_dict(No *no)
@@ -128,8 +159,6 @@ void delete_dict(No *no)
         aux = aux->prox;
     }
     free(no);
-
-    return true;
 }
 
 void show_dict(No *no)

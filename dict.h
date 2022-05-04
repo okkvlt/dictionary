@@ -59,4 +59,13 @@ int num_of_keys(No *);
  */
 void sort_dict(No *);
 
+/**
+ * Pesquisa o significado de uma determinada chave.
+ * @param No* Endereço do nó descritor.
+ * @param char* String com a chave.
+ * @retval NULL — Chave não encontrada.
+ * @retval char* — Significado da chave.
+ */
+char *search_meaning_key(No *, char *);
+
 #endif
