@@ -119,18 +119,15 @@ bool delete_key(No *no, char *key)
     no->qty--;
 }
 
-bool delete_dict(No *no)
+void delete_dict(No *no)
 {
-    if (no->head == NULL)
-        return false;
-
     Dict *aux = no->head;
     while (aux != NULL)
     {
         free(aux);
         aux = aux->prox;
     }
-    no->head = NULL;
+    free(no);
 
     return true;
 }

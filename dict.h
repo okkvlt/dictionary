@@ -34,10 +34,9 @@ bool delete_key(No *, char *);
 /**
  * Deleta o dicionário.
  * @param No* Endereço do nó descritor.
- * @retval true — Dicionário deletado com sucesso!
- * @retval false — Falha ao deletar dicionário!
+ * @return void.
  */
-bool delete_dict(No *);
+void delete_dict(No *);
 
 /**
  * Printa o dicionário.
