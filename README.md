@@ -186,3 +186,21 @@ Retorno:
 {'Arroz': 'Comida típica.', 'Espanha': 'País europeu.'}
 Significado de 'Arroz': 'Comida típica.'
 ```
+
+## ▪ Utilidades
+
+### ▪ Alteração de Tamanho das Strings
+
+Caso sinta necessidade, é possível alterar o tamanho das strings dos dicionários. Por padrão, o tamanho é de _64 bytes_, ou seja, 64 caracteres. Para alterar isso, vá na aba de pré-processamento no arquivo _dict.c_ e altere o macro MAX para o tamanho desejado.
+
+Padrão:
+
+```c
+#define MAX 64
+```
+
+Alteração:
+
+```c
+#define MAX [insira_novo_tamanho]
+```
