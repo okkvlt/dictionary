@@ -128,3 +128,30 @@ Exemplo:
 ```c
 int n = num_of_keys(dicionario);
 ```
+
+## ▪ Ordenação de Dicionário
+
+Outra função existente é a de organizar alfabeticamente as chaves de um dicionário. Para chamar essa função, basta utilizar `sort_dict()`. Essa função é do tipo _void_ e não retornará nada.
+
+Sintaxe:
+
+```python
+sort_dict(No *no);
+```
+
+Exemplo: 
+
+```c
+show_dict(dicionario);
+
+sort_dict(dicionario);
+
+show_dict(dicionario);
+```
+
+Retorno: 
+
+```python
+{'Espanha': 'País europeu.', 'Arroz': 'Comida típica.'}
+{'Arroz': 'Comida típica.', 'Espanha': 'País europeu.'}
+```
