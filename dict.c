@@ -3,12 +3,14 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define MAX 64
+
 // structs
 
 struct dict
 {
-    char key[64];
-    char meaning[64];
+    char key[MAX];
+    char meaning[MAX];
     struct dict *prox;
 };
 
@@ -48,7 +50,7 @@ bool checkSort(char *x, char *y)
 
 void swap(Dict *aux, Dict *temp)
 {
-    char utill_key[64], utill_meaning[64];
+    char utill_key[MAX], utill_meaning[MAX];
     Dict *utill_prox;
 
     strcpy(utill_key, aux->key);
@@ -118,7 +120,7 @@ char *search_meaning_key(No *no, char *key)
 
     Dict *aux = search_end_pre_key(no, key), *end;
 
-    char *string = malloc(sizeof(char) * 64);
+    char *string = malloc(sizeof(char) * MAX);
     end = aux->prox;
 
     strcpy(string, end->meaning);
