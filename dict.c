@@ -76,8 +76,31 @@ No *create_dict()
     return novo;
 }
 
+Dict *search_end_pre_key(No *no, char *key)
+{
+    Dict *aux = no->head;
+
+    if (aux == NULL)
+        return NULL;
+
+    while (aux != NULL)
+    {
+        if (aux->prox != NULL && strcmp(aux->prox->key, key) == 0)
+            return aux;
+        aux = aux->prox;
+    }
+
+    return NULL;
+}
+
 bool insert_key(No *no, char *key, char *meaning)
 {
+    if (search_end_pre_key(no, key) != NULL)
+        return false;
+
+    if (no->head != NULL && strcmp(no->head->key, key) == 0)
+        return false;
+
     Dict *novo = createNFill(key, meaning);
     if (novo == NULL)
         return false;
@@ -101,21 +124,31 @@ bool insert_key(No *no, char *key, char *meaning)
     return true;
 }
 
-Dict *search_end_pre_key(No *no, char *key)
+bool delete_key(No *no, char *key)
 {
-    Dict *aux = no->head;
+    if (no->head == NULL)
+        return false;
 
-    if (aux == NULL)
-        return NULL;
+    Dict *aux = no->head, *end;
 
-    while (aux != NULL)
+    if (strcmp(aux->key, key) == 0)
     {
-        if (aux->prox != NULL && strcmp(aux->prox->key, key) == 0)
-            return aux;
-        aux = aux->prox;
+        no->head = aux->prox;
+        end = aux;
+    }
+    else
+    {
+        aux = search_end_pre_key(no, key);
+        if (aux == NULL)
+            return false;
+        end = aux->prox;
+        aux->prox = aux->prox->prox;
     }
 
-    return NULL;
+    free(end);
+    no->qty--;
+
+    return true;
 }
 
 char *search_meaning_byKey(No *no, char *key)
@@ -165,33 +198,6 @@ char *search_key_byId(No *no, int id)
     if (aux != NULL)
         return aux->key;
     return NULL;
-}
-
-bool delete_key(No *no, char *key)
-{
-    if (no->head == NULL)
-        return false;
-
-    Dict *aux = no->head, *end;
-
-    if (strcmp(aux->key, key) == 0)
-    {
-        no->head = aux->prox;
-        end = aux;
-    }
-    else
-    {
-        aux = search_end_pre_key(no, key);
-        if (aux == NULL)
-            return false;
-        end = aux->prox;
-        aux->prox = aux->prox->prox;
-    }
-
-    free(end);
-    no->qty--;
-
-    return true;
 }
 
 void delete_dict(No *no)
