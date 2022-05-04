@@ -73,7 +73,7 @@ Retorno:
 {'Arroz': 'Comida típica.', 'Árvore': 'Ser vivo.', 'Espanha': 'País europeu.'}
 ```
 
-## ▪ Deleção de Valores
+## ▪ Remoção de Valores
 
 Também é possível deletar valores do dicionário utilizando a função `delete_key()`. Essa função é do tipo _bool_ e retornará _true_ caso a inserção seja bem sucedida e _false_ caso a inserção falhe. O único erro possível na deleção de valores refere-se a quando o dicionário é vazio.
 
@@ -95,4 +95,20 @@ Retorno:
 
 ```python
 {'Arroz': 'Comida típica.', 'Espanha': 'País europeu.'}
+```
+
+## ▪ Remoção de Dicionário
+
+Para remover um dicionário por completo, basta utilizar a função `delete_dict()`. Essa função é do tipo _void_ e não retornará nada.
+
+Sintaxe:
+
+```python
+delete_dict(No *no);
+```
+
+Exemplo: 
+
+```c
+delete_dict(dicionario);
 ```
